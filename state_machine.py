@@ -1,8 +1,7 @@
 from __future__ import annotations
-from abc import ABC, abstractmethod
 
 
-class State(ABC):
+class State:
 
     def __init__(self, label):
         self._label = label
@@ -11,25 +10,8 @@ class State(ABC):
         self._can_switch_to = None
         self._state_machine = None
 
-    @abstractmethod
-    def start(self):
-        raise NotImplementedError
-
-    @abstractmethod
-    def stop(self):
-        raise NotImplementedError
-
-    @abstractmethod
-    def pause(self):
-        raise NotImplementedError
-
-    @abstractmethod
-    def resume(self):
-        raise NotImplementedError
-
-    @abstractmethod
-    def update(self, *args, **kwargs):
-        raise NotImplementedError
+    def update(self, func, *args, **kwargs):
+        func(*args, **kwargs)
 
     @property
     def label(self):
